@@ -1,0 +1,11 @@
+
+Pinging 142.250.192.196 with 32 bytes of data:
+Reply from 142.250.192.196: bytes=32 time=75ms TTL=56
+Reply from 142.250.192.196: bytes=32 time=58ms TTL=56
+Reply from 142.250.192.196: bytes=32 time=72ms TTL=56
+Reply from 142.250.192.196: bytes=32 time=68ms TTL=56
+
+Ping statistics for 142.250.192.196:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 58ms, Maximum = 75ms, Average = 68ms

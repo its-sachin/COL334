@@ -1,0 +1,29 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\title{COL334: Assignment 2 Report}
+\author{Sachin 2019CS10722}
+
+\begin{document}
+
+\maketitle
+
+Following are the design choices that I've made:-
+
+\begin{itemize}
+    \item I have added a new Error named \textbf{ERROR 104 Username taken} which 
+    is thrown by the server when any client tries to register by an username that is 
+    already present in the chat.
+
+    \item For the case when sender->server messeage doesn't have Error 103 but reciever throws 
+    this error to server then I do not close the connection between reciever and server.
+
+    \item By default maximum of 10 clients are allowed (can be changed by providing a command line 
+    argument while running the server).
+
+    \item These are for the cases which are not mentioned in the assignment statement, rest all the things 
+    I have strictly followed the formats and guidelines provided.
+\end{itemize}
+
+\end{document}

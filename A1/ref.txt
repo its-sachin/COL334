@@ -1,0 +1,41 @@
+
+Pinging www.google.com [142.250.193.4] with 32 bytes of data:
+Reply from 142.250.193.4: bytes=32 time=32ms TTL=116
+Reply from 142.250.193.4: bytes=32 time=33ms TTL=116
+Reply from 142.250.193.4: bytes=32 time=33ms TTL=116
+Reply from 142.250.193.4: bytes=32 time=34ms TTL=116
+
+Ping statistics for 142.250.193.4:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 32ms, Maximum = 34ms, Average = 33ms
+
+
+
+Pinging www.google.com [142.250.193.4] with 32 bytes of data:
+Reply from 192.168.1.1: TTL expired in transit.
+Reply from 192.168.1.1: TTL expired in transit.
+Reply from 192.168.1.1: TTL expired in transit.
+Reply from 192.168.1.1: TTL expired in transit.
+
+Ping statistics for 142.250.193.4:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+
+Non-authoritative answer:
+
+Server:  multiplay.bsnl.in
+Address:  218.248.114.193
+
+Name:    www.iitd.ac.in
+Address:  103.27.9.24
+
+
+Non-authoritative answer:
+
+Server:  multiplay.bsnl.in
+Address:  218.248.114.193
+
+Name:    star-mini.c10r.facebook.com
+Addresses:  2a03:2880:f144:181:face:b00c:0:25de
+	  157.240.239.35
+Aliases:  www.facebook.com
