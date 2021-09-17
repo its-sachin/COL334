@@ -16,11 +16,15 @@ Following are the design choices that I've made:-
     is thrown by the server when any client tries to register by an username that is 
     already present in the chat.
 
-    \item For the case when sender->server messeage doesn't have Error 103 but reciever throws 
+    \item For the case when sender-$>$server messeage doesn't have Error 103 but reciever throws 
     this error to server then I do not close the connection between reciever and server.
 
-    \item By default maximum of 10 clients are allowed (can be changed by providing a command line 
-    argument while running the server).
+    \item By default maximum of 100 clients are allowed to make connection to the server (you can change
+    this by providing max connaction as command line argument while running the server)
+
+    \item I've given the flexibility to either provide the serverIP and serverPort thourgh command line
+    argument while running the client, but if not provided by default local host IP and port number 9999
+    will be taken.
 
     \item These are for the cases which are not mentioned in the assignment statement, rest all the things 
     I have strictly followed the formats and guidelines provided.

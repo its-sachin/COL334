@@ -1,8 +1,14 @@
 import socket
 from threading import Thread
 from os import getpid,kill
+from sys import argv
 
-MAX_CON = 5
+try:
+    MAX_CON = int(argv[1])
+except:
+    MAX_CON = 100
+
+
 MAX_LEN = 2048
 PORT = 9999
 FORMAT = 'utf-8'
@@ -84,11 +90,13 @@ class ClientSoc:
             return True
         
         def parsedReg(data):
-            s=data.split('\n\n')
-            if(len(s)==2 and s[-1]==''):
-                return s[0]
 
-            return None
+            try:
+                s=data.split('\n\n')
+                if(len(s)==2 and s[-1]==''):
+                    return s[0]
+            except:
+                return
 
         def parsed(data):
 
@@ -120,7 +128,7 @@ class ClientSoc:
                 errorHI()
                 return
 
-            if(users.get(header[0][1])==None or users[header[0][1]].get('reciever')==None):
+            if(header[0][1]!='ALL' and (users.get(header[0][1])==None or users[header[0][1]].get('reciever')==None)):
                 errorUS()
                 return
 

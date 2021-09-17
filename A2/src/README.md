@@ -5,11 +5,11 @@
 
     1. Run [__server.py__](./server.py) in the terminal using command ``` python server.py ``` to start the server.
 
-    2. You can specify the maximum number of clients that can be connected to server using comman line argument ``` python server.py max_connection``` but that is optional, default maximum 10 connections can be made.
-
     3. Once the server is started it will wait for clients to join.
 
     5. To start an instance of client run [__client.py__](./client.py) in different terminals using command ``` python client.py ```.
+
+    5. You can also provide the server IP and server Port through command line arguments using command ``` python client.py server_IP server_PORT```, although by default these are hard coded to local host IP and 9999 respectively.
 
     2. Client program will first ask for the username of client with which you want to join the chat. 
 

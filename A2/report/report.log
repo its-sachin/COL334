@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.9.5)  17 SEP 2021 18:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.9.5)  17 SEP 2021 20:49
 entering extended mode
-**e:/Semesters/Sem5/COL334/Assignments/A2/report/report.tex
-(e:/Semesters/Sem5/COL334/Assignments/A2/report/report.tex
+**e:/Semesters/Sem5/COL334/COL334/A2/report/report.tex
+(e:/Semesters/Sem5/COL334/COL334/A2/report/report.tex
 LaTeX2e <2021-06-01> patch level 1
 L3 programming layer <2021-08-27> (C:\Users\sachi\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
 Document Class: article 2021/02/12 v1.4n Standard LaTeX document class
@@ -102,17 +102,17 @@ LaTeX Font Info:    ... okay on input line 8.
 
 {C:/Users/sachi/AppData/Local/MiKTeX/pdftex/config/pdftex.map}] (report.aux) ) 
 Here is how much of TeX's memory you used:
- 1090 strings out of 478927
- 15837 string characters out of 2852536
- 312427 words of memory out of 3000000
- 18997 multiletter control sequences out of 15000+600000
- 407782 words of font info for 42 fonts, out of 8000000 for 9000
+ 1092 strings out of 478927
+ 15830 string characters out of 2852536
+ 313427 words of memory out of 3000000
+ 18999 multiletter control sequences out of 15000+600000
+ 408236 words of font info for 44 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 56i,6n,66p,249b,191s stack positions out of 5000i,500n,10000p,200000b,80000s
- <C:\Users\sachi\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/sachi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/sachi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/sachi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/sachi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on report.pdf (1 page, 57819 bytes).
+ 56i,6n,66p,244b,191s stack positions out of 5000i,500n,10000p,200000b,80000s
+ <C:\Users\sachi\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/sachi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/sachi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/sachi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/sachi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/sachi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb>
+Output written on report.pdf (1 page, 67268 bytes).
 PDF statistics:
- 31 PDF objects out of 1000 (max. 8388607)
+ 36 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

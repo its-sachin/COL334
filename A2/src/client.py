@@ -1,13 +1,13 @@
 import socket
 from threading import Thread
 from os import getpid,kill
+from sys import argv
 
 PORT = 9999
 MAX_LEN = 2048
 FORMAT = 'utf-8'
 
-def getIP():
-    return socket.gethostbyname(socket.gethostname())
+IP = '192.168.1.6'
 
 
 class Client:
@@ -15,8 +15,16 @@ class Client:
     def __init__(self):
         try:
             
-            # destIP,destPort = input("Enter Server IP: "),input("Enter Server Port: ")
-            destIP,destPort = getIP(),PORT
+            try:
+                destIP = argv[1]
+                    
+            except:
+                destIP = IP
+            
+            try:
+                destPort = int(argv[2])
+            except:
+                destPort = PORT
 
             self.sender = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
             self.reciever = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
@@ -73,19 +81,24 @@ class Client:
     def send(self):
 
         def parseOut(data):
-            data=data.strip(' ')
-            if(data[0]!='@'):
-                return
-            to=''
-            i=1
-            while(i<len(data) and data[i]!=' '):
-                to+=data[i]
-                i+=1
-        
-            if(i>=len(data)):
-                return
 
-            return to,data[i:]
+            try:
+                data=data.strip(' ')
+                if(data[0]!='@'):
+                    return
+                to=''
+                i=1
+                while(i<len(data) and data[i]!=' '):
+                    to+=data[i]
+                    i+=1
+            
+                if(i>=len(data)):
+                    return
+
+                return to,data[i:]
+
+            except:
+                return
 
         def parseIn(data):
     
