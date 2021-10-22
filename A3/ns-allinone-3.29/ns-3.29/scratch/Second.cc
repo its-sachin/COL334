@@ -199,7 +199,7 @@ void Run(){
 	app->SetStopTime (Seconds (finishTime));
 
 	AsciiTraceHelper asciiTraceHelper;
-	Ptr<OutputStreamWrapper> stream = asciiTraceHelper.CreateFileStream (TCPtype +  "-out.cwnd");
+	Ptr<OutputStreamWrapper> stream = asciiTraceHelper.CreateFileStream ("a-" + std::to_string(appDataRate) + "Mbps_c-" + std::to_string(linkDataRate) +  "Mbps-out.cwnd");
 	ns3TcpSocket->TraceConnectWithoutContext ("CongestionWindow", MakeBoundCallback (&CwndChange, stream));
 
 	PcapHelper pcapHelper;
@@ -216,31 +216,16 @@ void Run(){
 int main (int argc, char *argv[]){
 
 	CommandLine cmd;
-	cmd.AddValue("TCP", "TCP Protocol", TCPtype);
+	cmd.AddValue("CDR", "Channel Data Rate", linkDataRate);
+    cmd.AddValue("ADR", "Application Data Rate", appDataRate);
 	cmd.Parse (argc, argv);
 
-	linkDataRate = 8;
+    TCPtype = "TcpNewReno";
 	linkDelay = 3;
-	appDataRate = 1;
 	errorRate = 0.00001;
 	packetSize = 3000;
 	packetCount = 10000;
-	finishTime = 30;
-
-	bool found = false;
-	for (size_t i = 0; i < 14; i++){
-
-		if(protocols[i] == TCPtype){
-			found = true;
-			break;
-		}
-	}
-
-	if(!found){
-		std::cout<<"INVALID TCP PROTOCOL" << std::endl;
-		return -1;
-	}
-	
+	finishTime = 30;	
 
 	Run();
 
