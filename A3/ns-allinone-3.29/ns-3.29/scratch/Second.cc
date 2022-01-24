@@ -7,6 +7,8 @@
 
 using namespace ns3;
 
+bool toPrint = true;
+
 class MyApp : public Application{
 	
 public:
@@ -116,19 +118,23 @@ void MyApp::ScheduleTx (void) {
 
 static void CwndChange (Ptr<OutputStreamWrapper> stream, uint32_t oldCwnd, uint32_t newCwnd){
 
-	NS_LOG_UNCOND (Simulator::Now ().GetSeconds () << "\t" << newCwnd);
+	if(toPrint){
+		NS_LOG_UNCOND (Simulator::Now ().GetSeconds () << "\t" << newCwnd);
+	}
 	*stream->GetStream () <<Simulator::Now ().GetSeconds () << "\t" << newCwnd << std::endl;
 }
 
 static void RxDrop (Ptr<OutputStreamWrapper> stream, Ptr<PcapFileWrapper> file, Ptr<const Packet> p){
 
-	NS_LOG_UNCOND ("RxDrop at " << Simulator::Now ().GetSeconds ());
+	if(toPrint){
+		NS_LOG_UNCOND ("RxDrop at " << Simulator::Now ().GetSeconds ());
+	}
 	*stream->GetStream () <<"RxDrop at " << Simulator::Now ().GetSeconds ()<< std::endl;
 	file->Write (Simulator::Now (), p);
 }
 
 
-NS_LOG_COMPONENT_DEFINE ("SixthScriptExample");
+NS_LOG_COMPONENT_DEFINE ("QuesSecond");
 
 // ===========================================================================
 //
@@ -147,16 +153,24 @@ NS_LOG_COMPONENT_DEFINE ("SixthScriptExample");
 // ===========================================================================
 
 std::string TCPtype;
-uint32_t linkDataRate;
+double linkDataRate;
 uint32_t linkDelay;
-uint32_t appDataRate;
+double appDataRate;
 double errorRate;
 uint32_t packetSize;
 uint32_t packetCount;
 double finishTime;
 
-std::string protocols[14] = {"TcpNewReno", "TcpHybla", "TcpHighSpeed", "TcpHtcp", "TcpVegas", "TcpScalable", 
-		"TcpVeno", "TcpBic", "TcpYeah", "TcpIllinois", "TcpWestwood", "TcpWestwoodPlus", "TcpLedbat","TcpLp"};
+std::string trailingZero(double a){
+
+	std::string out = std::to_string(a);
+	out.erase ( out.find_last_not_of('0') + 1, std::string::npos );
+
+	if(out[out.size()-1]=='.'){
+		out = out.substr(0,out.size()-1);
+	}
+	return out;
+}
 
 void Run(){
 
@@ -199,11 +213,11 @@ void Run(){
 	app->SetStopTime (Seconds (finishTime));
 
 	AsciiTraceHelper asciiTraceHelper;
-	Ptr<OutputStreamWrapper> stream = asciiTraceHelper.CreateFileStream ("a-" + std::to_string(appDataRate) + "Mbps_c-" + std::to_string(linkDataRate) +  "Mbps-out.cwnd");
+	Ptr<OutputStreamWrapper> stream = asciiTraceHelper.CreateFileStream ("a-[" + trailingZero(appDataRate) + "]_c-[" + trailingZero(linkDataRate) +  "]-out.cwnd");
 	ns3TcpSocket->TraceConnectWithoutContext ("CongestionWindow", MakeBoundCallback (&CwndChange, stream));
 
 	PcapHelper pcapHelper;
-	Ptr<PcapFileWrapper> file = pcapHelper.CreateFile ("sixth.pcap", std::ios::out, PcapHelper::DLT_PPP);
+	Ptr<PcapFileWrapper> file = pcapHelper.CreateFile ("Second.pcap", std::ios::out, PcapHelper::DLT_PPP);
 	devices.Get (1)->TraceConnectWithoutContext ("PhyRxDrop", MakeBoundCallback (&RxDrop, stream, file));
 
 	Simulator::Stop (Seconds (finishTime));
@@ -218,13 +232,14 @@ int main (int argc, char *argv[]){
 	CommandLine cmd;
 	cmd.AddValue("CDR", "Channel Data Rate", linkDataRate);
     cmd.AddValue("ADR", "Application Data Rate", appDataRate);
+	cmd.AddValue("P", "Print on Console", toPrint);
 	cmd.Parse (argc, argv);
 
     TCPtype = "TcpNewReno";
 	linkDelay = 3;
 	errorRate = 0.00001;
 	packetSize = 3000;
-	packetCount = 10000;
+	packetCount = 100000;
 	finishTime = 30;	
 
 	Run();

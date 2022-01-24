@@ -7,6 +7,8 @@
 
 using namespace ns3;
 
+bool toPrint = true;
+
 class MyApp : public Application{
 	
 public:
@@ -116,19 +118,23 @@ void MyApp::ScheduleTx (void) {
 
 static void CwndChange (Ptr<OutputStreamWrapper> stream, uint32_t oldCwnd, uint32_t newCwnd){
 
-	NS_LOG_UNCOND (Simulator::Now ().GetSeconds () << "\t" << newCwnd);
+	if(toPrint){
+		NS_LOG_UNCOND (Simulator::Now ().GetSeconds () << "\t" << newCwnd);
+	}
 	*stream->GetStream () <<Simulator::Now ().GetSeconds () << "\t" << newCwnd << std::endl;
 }
 
 static void RxDrop (Ptr<OutputStreamWrapper> stream, Ptr<PcapFileWrapper> file, Ptr<const Packet> p){
 
-	NS_LOG_UNCOND ("RxDrop at " << Simulator::Now ().GetSeconds ());
+	if(toPrint){
+		NS_LOG_UNCOND ("RxDrop at " << Simulator::Now ().GetSeconds ());
+	}
 	*stream->GetStream () <<"RxDrop at " << Simulator::Now ().GetSeconds ()<< std::endl;
 	file->Write (Simulator::Now (), p);
 }
 
 
-NS_LOG_COMPONENT_DEFINE ("SixthScriptExample");
+NS_LOG_COMPONENT_DEFINE ("QuesFirst");
 
 // ===========================================================================
 //
@@ -155,8 +161,8 @@ uint32_t packetSize;
 uint32_t packetCount;
 double finishTime;
 
-std::string protocols[14] = {"TcpNewReno", "TcpHybla", "TcpHighSpeed", "TcpHtcp", "TcpVegas", "TcpScalable", 
-		"TcpVeno", "TcpBic", "TcpYeah", "TcpIllinois", "TcpWestwood", "TcpWestwoodPlus", "TcpLedbat","TcpLp"};
+std::string protocols[15] = {"TcpNewReno", "TcpHybla", "TcpHighSpeed", "TcpHtcp", "TcpVegas", "TcpScalable", 
+		"TcpVeno", "TcpBic", "TcpYeah", "TcpIllinois", "TcpWestwood", "TcpWestwoodPlus", "TcpLedbat","TcpLp","TcpNewRenoCSE"};
 
 void Run(){
 
@@ -203,7 +209,7 @@ void Run(){
 	ns3TcpSocket->TraceConnectWithoutContext ("CongestionWindow", MakeBoundCallback (&CwndChange, stream));
 
 	PcapHelper pcapHelper;
-	Ptr<PcapFileWrapper> file = pcapHelper.CreateFile ("sixth.pcap", std::ios::out, PcapHelper::DLT_PPP);
+	Ptr<PcapFileWrapper> file = pcapHelper.CreateFile ("First.pcap", std::ios::out, PcapHelper::DLT_PPP);
 	devices.Get (1)->TraceConnectWithoutContext ("PhyRxDrop", MakeBoundCallback (&RxDrop, stream, file));
 
 	Simulator::Stop (Seconds (finishTime));
@@ -217,6 +223,7 @@ int main (int argc, char *argv[]){
 
 	CommandLine cmd;
 	cmd.AddValue("TCP", "TCP Protocol", TCPtype);
+	cmd.AddValue("P", "Print on Console", toPrint);
 	cmd.Parse (argc, argv);
 
 	linkDataRate = 8;
@@ -224,11 +231,11 @@ int main (int argc, char *argv[]){
 	appDataRate = 1;
 	errorRate = 0.00001;
 	packetSize = 3000;
-	packetCount = 10000;
+	packetCount = 100000;
 	finishTime = 30;
 
 	bool found = false;
-	for (size_t i = 0; i < 14; i++){
+	for (size_t i = 0; i < 15; i++){
 
 		if(protocols[i] == TCPtype){
 			found = true;
